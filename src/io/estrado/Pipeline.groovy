@@ -78,8 +78,8 @@ def gitEnvVars() {
         error "${e}"
     }
     println "env.GIT_COMMIT_ID ==> ${env.GIT_COMMIT_ID}"
-
-    sh 'git config --get remote.origin.url > git_remote_origin_url.txt'
+    println "get remote origin url"
+    //sh 'git config --get remote.origin.url > git_remote_origin_url.txt'
     try {
 //        env.GIT_REMOTE_URL = readFile('git_remote_origin_url.txt').trim()
           env.GIT_REMOTE_URL = 'git@github.com:huyngo81/tandy.git'
