@@ -81,7 +81,8 @@ def gitEnvVars() {
 
     sh 'git config --get remote.origin.url > git_remote_origin_url.txt'
     try {
-        env.GIT_REMOTE_URL = readFile('git_remote_origin_url.txt').trim()
+//        env.GIT_REMOTE_URL = readFile('git_remote_origin_url.txt').trim()
+          env.GIT_REMOTE_URL = 'git@github.com:huyngo81/tandy.git'
     } catch (e) {
         error "${e}"
     }
