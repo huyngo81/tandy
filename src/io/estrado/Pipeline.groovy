@@ -121,7 +121,7 @@ def getContainerTags(config, Map tags = [:]) {
             return tags
         }
     } catch (Exception e) {
-        println "WARNING: commit unavailable from env. ${e}"
+        println "WARNING: PR commit unavailable from env. ${e}"
     }
 
     // commit tag
@@ -134,7 +134,7 @@ def getContainerTags(config, Map tags = [:]) {
         }
         tags << ['commit': commit_tag]
     } catch (Exception e) {
-        println "WARNING: commit unavailable from env. ${e}"
+        println "WARNING: BRANCH commit unavailable from env. ${e}"
     }
 
     // master tag
@@ -143,7 +143,7 @@ def getContainerTags(config, Map tags = [:]) {
             tags << ['master': 'latest']
         }
     } catch (Exception e) {
-        println "WARNING: branch unavailable from env. ${e}"
+        println "WARNING: Master branch unavailable from env. ${e}"
     }
 
     // build tag only if none of the above are available
