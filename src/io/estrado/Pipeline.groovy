@@ -40,7 +40,7 @@ def helmDeploy(Map args) {
     if (args.dry_run) {
         println "Running dry-run deployment"
 
-        sh "helm upgrade --dry-run --install ${args.name} ${args.chart_dir} --set imageTag=${args.version_tag},replicas=${args.replicas},cpu=${args.cpu},memory=${args.memory},ingress.hostname=${args.hostname} --namespace=${namespace}"
+        sh "helm upgrade --dry-run --install ${args.name} ${args.chart_dir} --set imageTag=${args.imageTag},replicas=${args.replicas},cpu=${args.cpu},memory=${args.memory},ingress.hostname=${args.hostname} --namespace=${namespace}"
     } else {
         println "Running deployment"
 
@@ -99,9 +99,10 @@ def containerBuildPub(Map args) {
         // def img = docker.build("${args.acct}/${args.repo}", args.dockerfile)
         def img = docker.image("${args.acct}/${args.repo}")
         sh "docker build --build-arg VCS_REF=${env.GIT_SHA} --build-arg BUILD_DATE=`date -u +'%Y-%m-%dT%H:%M:%SZ'` -t ${args.acct}/${args.repo} ${args.dockerfile}"
-        for (int i = 0; i < args.tags.size(); i++) {
-            img.push(args.tags.get(i))
-        }
+        //for (int i = 0; i < args.tags.size(); i++) {
+        //    img.push(args.tags.get(i))
+        //}
+        sh "docker push ${args.acct}/${args.repo}:${args.tags}"
 
         return img.id
     }
