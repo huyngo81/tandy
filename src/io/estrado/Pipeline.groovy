@@ -1,3 +1,8 @@
+/**
+Author: Huy Ngo
+Email: ndahuy@gmail.com
+Description: jenkins shared library for helm and kubernetes
+*/
 #!/usr/bin/groovy
 package io.estrado;
 
